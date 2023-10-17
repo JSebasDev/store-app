@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @CircuitBreaker(name = "external", fallbackMethod = "fallback")
-@FeignClient(name = "payment-service")
+@FeignClient(name = "payment", url = "${microservices.payment}")
 public interface IPaymentFeignClient {
 
-    @PostMapping("/payment")
+    @PostMapping("")
     ResponseEntity<Long> doPayment(@RequestBody PaymentRequest paymentRequest);
 
-    @GetMapping("/payment/{orderId}")
+    @GetMapping("/{orderId}")
     ResponseEntity<PaymentResponse> getPaymentByOrderId(@PathVariable long orderId);
 
     default void fallback(Exception e){

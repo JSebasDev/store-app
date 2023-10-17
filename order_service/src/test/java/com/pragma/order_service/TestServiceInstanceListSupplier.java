@@ -19,16 +19,16 @@ public class TestServiceInstanceListSupplier implements ServiceInstanceListSuppl
         List<ServiceInstance> result
                 = new ArrayList<>();
         result.add(new DefaultServiceInstance(
-                "payment-service",
-                "payment-service",
+                "payment-service-svc",
+                "payment-service-svc",
                 "localhost",
                 8080,
                 false
         ));
 
         result.add(new DefaultServiceInstance(
-                "product-service",
-                "product-service",
+                "product-service-svc",
+                "product-service-svc",
                 "localhost",
                 8080,
                 false

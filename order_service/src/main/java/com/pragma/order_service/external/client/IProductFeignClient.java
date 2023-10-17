@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 @CircuitBreaker(name = "external", fallbackMethod = "fallback")
-@FeignClient(name = "product-service")
+@FeignClient(name = "product", url = "${microservices.product}")
 public interface IProductFeignClient {
 
-    @PutMapping("/product/reduceQuantity/{id}")
+    @PutMapping("/reduceQuantity/{id}")
     ResponseEntity<Void> reduceQuantity(@PathVariable("id") long productId, @RequestParam long quantity);
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/{id}")
     ResponseEntity<ProductResponse> getProductById(@PathVariable long id);
 
     default void fallback(Exception e){
